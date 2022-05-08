@@ -13,7 +13,13 @@ const Home = () => {
     wordList: [],
   };
 
-  const [wordListObj] = useLocalStorage<IwordList>('wordList', test_defaultValue);
+  // const [wordListObj] = useLocalStorage<IwordList>('wordList', test_defaultValue);
+  let wordListObj = JSON.parse(sessionStorage?.getItem('wordList') || '{}');
+  wordListObj = typeof wordListObj === 'string' ? JSON.parse(wordListObj) : wordListObj;
+
+  if (!wordListObj?.wordList) {
+    wordListObj = test_defaultValue;
+  }
 
   console.log('wordListObj', wordListObj);
 

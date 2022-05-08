@@ -81,14 +81,20 @@ const test_defaultValue = {
 };
 
 const WordList = () => {
-  let [wordListObj] = useLocalStorage<IwordList>('wordList', test_defaultValue);
+  // let [wordListObj] = useLocalStorage<IwordList>('wordList', test_defaultValue);
+  let wordListObj = JSON.parse(sessionStorage?.getItem('wordList') || '{}');
   wordListObj = typeof wordListObj === 'string' ? JSON.parse(wordListObj) : wordListObj;
+
+  if (!wordListObj?.wordList) {
+    wordListObj = test_defaultValue;
+  }
 
   const [wordList, setWordList] = useState<Array<IWord>>(wordListObj.wordList);
 
   const saveWordList = useCallback(
     (newWordList?: Array<IWord>): void => {
-      writeStorage('wordList', JSON.stringify({ ...wordListObj, wordList: newWordList } || wordListObj));
+      // writeStorage('wordList', JSON.stringify({ ...wordListObj, wordList: newWordList } || wordListObj));
+      sessionStorage.setItem('wordList', JSON.stringify({ ...wordListObj, wordList: newWordList } || wordListObj));
     },
     [wordListObj],
   );
@@ -111,7 +117,7 @@ const WordList = () => {
       en: inputENVar,
       kr: inputKRVar,
       isModify: false,
-      idx: (wordList[wordList.length - 1].idx || 0) + 1,
+      idx: (wordList[wordList.length - 1]?.idx || 0) + 1,
     };
 
     setWordList([...wordList, test]);
