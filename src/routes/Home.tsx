@@ -15,6 +15,8 @@ const Home = () => {
 
   const [wordListObj] = useLocalStorage<IwordList>('wordList', test_defaultValue);
 
+  console.log('wordListObj', wordListObj);
+
   console.log('wordListObj?.wordList', wordListObj?.wordList, wordListObj);
   return (
     <HomeContainer>

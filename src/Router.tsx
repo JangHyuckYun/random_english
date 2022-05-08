@@ -5,7 +5,7 @@ import { Header } from './Header';
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={'/random_english'}>
       <Header />
       <Routes>
         <Route path="/wordList" element={<WordList />} />
