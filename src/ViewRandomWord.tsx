@@ -117,37 +117,46 @@ const ViewRandomWord = ({ wordList }: IwordList) => {
 
   return (
     <ViewRandomWordContainer>
-      <div className="state">
-        <Line
-          className={'state'}
-          percent={Math.floor((stateLen / (randomWordList?.length || 1)) * 100)}
-          strokeWidth={2}
-          strokeColor="#5490fb"
-        />
-      </div>
-      <div />
-      <div className={'wordBoxs'}>
-        <div className="result wordBox">
-          <h2>{resultWord.en}</h2>
+      {wordList.length === 0 ? (
+        <div>
+          <p>현재 저장되어있는 단어가 없어요..</p>
+          <p>상단에 "Random_WordList"를 클릭해 단어를 추가해 주세요.</p>
         </div>
-        <div className="mean_result wordBox">
-          <h2 className={hiddenKrWord ? 'hidden' : ''}>{resultWord.kr}</h2>
-          <DefaultButton onClick={toggleWord_kr}>{hiddenKrWord ? '뜻 보기' : '뜻 숨기기'}</DefaultButton>
-        </div>
-      </div>
-      <div className="buttonBox">
-        <div className="row">
-          {stateLen - 1 <= 0 ? '' : <DefaultButton onClick={viewPrevWord}>{'<<'}</DefaultButton>}
-          {stateLen - 1 >= (randomWordList?.length || 0) - 1 ? (
-            ''
-          ) : (
-            <DefaultButton onClick={viewNextWord}>{'>>'}</DefaultButton>
-          )}
-        </div>
-        <div className="row">
-          <DefaultButton onClick={relocation}>다시하기 (재배치)</DefaultButton>
-        </div>
-      </div>
+      ) : (
+        <>
+          <div className="state">
+            <Line
+              className={'state'}
+              percent={Math.floor((stateLen / (randomWordList?.length || 1)) * 100)}
+              strokeWidth={2}
+              strokeColor="#5490fb"
+            />
+          </div>
+          <div />
+          <div className={'wordBoxs'}>
+            <div className="result wordBox">
+              <h2>{resultWord.en}</h2>
+            </div>
+            <div className="mean_result wordBox">
+              <h2 className={hiddenKrWord ? 'hidden' : ''}>{resultWord.kr}</h2>
+              <DefaultButton onClick={toggleWord_kr}>{hiddenKrWord ? '뜻 보기' : '뜻 숨기기'}</DefaultButton>
+            </div>
+          </div>
+          <div className="buttonBox">
+            <div className="row">
+              {stateLen - 1 <= 0 ? '' : <DefaultButton onClick={viewPrevWord}>{'<<'}</DefaultButton>}
+              {stateLen - 1 >= (randomWordList?.length || 0) - 1 ? (
+                ''
+              ) : (
+                <DefaultButton onClick={viewNextWord}>{'>>'}</DefaultButton>
+              )}
+            </div>
+            <div className="row">
+              <DefaultButton onClick={relocation}>다시하기 (재배치)</DefaultButton>
+            </div>
+          </div>
+        </>
+      )}
     </ViewRandomWordContainer>
   );
 };
