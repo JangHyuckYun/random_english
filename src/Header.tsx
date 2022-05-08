@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 const HeaderNav = styled.nav`
-  ${({ theme: { textColor } }) => css`
+  ${() => css`
     width: 100%;
     height: 70px;
     position: fixed;

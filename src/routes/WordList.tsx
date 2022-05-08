@@ -1,6 +1,6 @@
-import { IwordList, IWordList } from '../interface/WordList';
+import { IwordList } from '../interface/WordList';
 import styled, { css } from 'styled-components';
-import React, { MouseEventHandler, useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { IWord } from '../interface/IWord';
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { useBeforeunload } from 'react-beforeunload';

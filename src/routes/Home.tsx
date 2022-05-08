@@ -1,4 +1,4 @@
-import { IwordList, IWordList } from '../interface/WordList';
+import { IwordList } from '../interface/WordList';
 import ViewRandomWord from '../ViewRandomWord';
 import styled from 'styled-components';
 import { useLocalStorage } from '@rehooks/local-storage';
