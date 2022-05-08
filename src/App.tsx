@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Router from './Router';
+import reset from 'styled-reset';
+import { createGlobalStyle } from 'styled-components';
 
-function App() {
+const GlobalStyle = createGlobalStyle`
+    ${reset}
+    html,body, #root {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    * {
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+    
+    .none {
+      display: none;
+    }
+    
+    .hidden {
+      visibility: hidden;
+    }
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Router />
+    </>
   );
-}
+};
 
 export default App;
